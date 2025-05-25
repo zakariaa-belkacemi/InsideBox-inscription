@@ -6,7 +6,7 @@
     <title>Inscription</title>
     <link rel="shortcut icon" type="image/x-icon"  href="/images/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="styles/style.css"> 
    
    
 </head>
@@ -32,7 +32,7 @@
         if (!$conn) {
           die("Connection failed: " . mysqli_connect_error());
         }
-      echo "Connected Succefully";
+    //   echo "Connected Succefully";
  $nomError = "";
         $nomValide ="";
         $prenom = "";
@@ -73,7 +73,7 @@ if (empty($nom)) {
   $valide=true;
   }
   if (!empty($prenom)) {
-  $prenom = "Prenom : $prenom <br>";
+  $prenom =  $prenom ;
   $valide=true;
 } 
 if (empty($email)) {
@@ -123,8 +123,11 @@ else if(!empty($confirmmdp)) {
  mysqli_query($conn, "SELECT * FROM `register`");
  mysqli_query($conn,"INSERT INTO register (nom, prenom, email) VALUES ('$nom', '$prenom', '$email')");
  mysqli_close($conn);
- }
+  header("Location: redirection.php?nom=$nom&prenom=$prenom&email=$email&age=$age");
+ exit();
  
+ }
+
 ?>
               <div class="div">
                     <label for="nom">Nom* :</label>
